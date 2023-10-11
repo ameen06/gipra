@@ -4,7 +4,7 @@
 <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
 @endpush
 
-    <h2 class="text-xl font-bold text-gray-700 mb-6 text-left">User Register</h2>
+    <h2 class="text-xl font-bold text-gray-700 mb-6 text-left">User Registration</h2>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf

@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Gipra Test Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel project done for evaluating skillset.
 
-## About Laravel
+## Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[⚙️ Clonning the Project](#clone-the-project)
+
+[🛠️ Setup](#setup)
+
+[👩‍💻 Installation](#installation)
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Clone the Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can clone the project by using this command:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+``` bash
+git clone https://github.com/ameen06/gipra.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This will create a new subfolder with the source of the project
 
-## Laravel Sponsors
+## Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Below are other packages and direction to setup the project;
 
-### Premium Partners
+### Database
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Create new database and add the credentials to *.env* file
 
-## Contributing
+### Image Library
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+I use **[ImageKit](https://imagekit.io/)** for storing images. They have really good & simple APIs we can use. And it is totally free!.
+We have to use their PHP SDK to their service. Instead doing everything in the bare PHP way, we can do that by the Laravel way (Using Laravel Flysystem).
+To do so, we install the [ImageKit Adapter](https://github.com/TaffoVelikoff/imagekit-adapter) Package by TaffoVelikoff.
 
-## Code of Conduct
+**To use their service we need to add API keys to the _.env_ file**. Add this to your *.env* file
+```php
+IMAGEKIT_PUBLIC='public_GlOm8dzvbmaRUBPdsfef7IpJdQ8='
+IMAGEKIT_PRIVATE='private_6N4sBUV6Y4D7FIq1MIOV+j9h3eQ='
+IMAGEKIT_ENDPOINT='https://ik.imagekit.io/k4cixy45r'
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### User Role Management
 
-## Security Vulnerabilities
+To make manage user permissions and roles easier and fast I use the [Spatie Laravel Permission](https://spatie.be/docs/laravel-permission/v5/introduction) package.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Installation
 
-## License
+First let's install composer packages. To do so, run the command:
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Next we have to install npm packages. To do so, run the command:
+```bash
+npm install
+```
+
+Then we have to migrate the tables. With that we have to seed user roles too, because when a user register to the application the roles should be already there.
+```bash
+php artisan migrate --seed --seeder=RoleSeeder
+```
+
+**Now we are ready to use the application.** You can run _npm run dev_ and _php artisan serve_ and use the application.
