@@ -60,7 +60,12 @@ Next we have to install npm packages. To do so, run the command:
 npm install
 ```
 
-Then we have to migrate the tables. With that we have to seed user roles too, because when a user register to the application the roles should be already there.
+Then Generate the App Key using this command:
+```bash
+php artisan key:generate
+```
+
+Finally we have to migrate the tables. With that we have to seed user roles too, because when a user register to the application the roles should be already there.
 ```bash
 php artisan migrate --seed --seeder=RoleSeeder
 ```
